@@ -2,9 +2,10 @@
 // but the default render speed is too fast so implenent the snakespeed var
 // to hit a certain treshold for when an update is necessary
 
-import {SNAKE_SPEED, update as updateSnake, draw as drawSnake} from './snake.js'
+import {update as updateSnake, draw as drawSnake, SNAKE_SPEED} from './snake.js'
 
 let lastRenderTime = 0
+const gameBoard = document.getElementById('game-board')
 
 
 function main(currentTime) {
@@ -24,5 +25,6 @@ function update() {
 }
 
 function draw() {
-    drawSnake()
+    gameBoard.innerHTML = ''
+    drawSnake(gameBoard)
 }
