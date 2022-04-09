@@ -19,6 +19,7 @@
             background-color: beige;
             height: 100vmin;
             width: 100vmin;
+            /* vmin makes a responsive extending of the game in relation to the body */
             display: grid;
             grid-template-rows: repeat(21. 1fr);
             grid-template-columns: repeat(21, 1fr);
@@ -36,6 +37,9 @@
         }
         
     </style>
+    <script src="game.js" defer type="module"></script>
+    <!-- defer makes the script come after the body -->
+    <!-- type module opens up the possibility to use import/export -->
 </head>
 <body>
     <div id="game-board"></div>
