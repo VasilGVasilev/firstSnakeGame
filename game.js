@@ -2,8 +2,10 @@
 // but the default render speed is too fast so implenent the snakespeed var
 // to hit a certain treshold for when an update is necessary
 
+import {SNAKE_SPEED, update as updateSnake, draw as drawSnake} from './snake.js'
+
 let lastRenderTime = 0
-const SNAKE_SPEED = 5
+
 
 function main(currentTime) {
     window.requestAnimationFrame(main)
@@ -18,9 +20,9 @@ function main(currentTime) {
 window.requestAnimationFrame(main)
 
 function update() {
-
+    updateSnake()
 }
 
 function draw() {
-
+    drawSnake()
 }
