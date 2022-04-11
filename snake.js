@@ -2,9 +2,13 @@ import { getInputDirection } from "./input.js"
 
 export const SNAKE_SPEED = 5
 const snakeBody = [{x: 11, y: 11}]
+let newSegments = 0
 
 export function update() {
-    // two-fold movement
+    // I. expansion of snake
+    addSegments()
+
+    // II. two-fold movement
     
     const inputDirection = getInputDirection()
 
@@ -37,4 +41,30 @@ export function draw(gameBoard) {
         snakeElement.classList.add('snake')
         gameBoard.appendChild(snakeElement)
     })
+}
+
+export function expandSnake(amountOfExpansion) {
+    newSegments += amountOfExpansion
+}
+
+export function onSnake(positionOfFood) {
+    // The some() method tests whether at least one element in the array passes the test implemented by the provided function.
+    return snakeBody.some(segment => {
+        return equalPosition(segment, positionOfFood)
+    })
+}
+// pos1 is any segment of the snake but it is obviously only the head and pos2 is the food
+function equalPosition(pos1, pos2) {
+    return pos1.x === pos2.x && pos1.y === pos2.y
+}
+
+// if the snake eats food, it will duplicate the one position and as it moves it will expand outwords
+
+function addSegments() {
+    for (let i = 0; i < newSegments; i++) {
+        // push to add the new segment at the back
+        snakeBody.push({...snakeBody[snakeBody.length - 1]})
+    }
+    // so that it does not add segments on each movement 
+    newSegments = 0
 }
