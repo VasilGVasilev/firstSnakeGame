@@ -3,6 +3,7 @@ import { getInputDirection } from "./input.js"
 export const SNAKE_SPEED = 5
 const snakeBody = [{x: 11, y: 11}]
 let newSegments = 0
+export let currentSizeOfSnake = 0
 
 export function update() {
     // I. expansion of snake
@@ -60,7 +61,9 @@ export function getSnakehead() {
 }
 
 export function snakeIntersection() {
+    currentSizeOfSnake = snakeBody.length
     return onSnake(snakeBody[0], {ignoreHead: true})
+    
     // ignore is because onSnake makes it loop over the head, so head is same with head => return const true
 }
 
