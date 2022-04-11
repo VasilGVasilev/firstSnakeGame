@@ -64,6 +64,8 @@ function addSegments() {
     for (let i = 0; i < newSegments; i++) {
         // push to add the new segment at the back
         snakeBody.push({...snakeBody[snakeBody.length - 1]})
+        // or snakeBody[snakeBody.length] = {...snakeBody[snakeBody.length - 1]}
+        // => populate with a duplicate of the last segment of the snake a new last segment
     }
     // so that it does not add segments on each movement 
     newSegments = 0
