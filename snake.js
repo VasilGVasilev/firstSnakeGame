@@ -47,12 +47,23 @@ export function expandSnake(amountOfExpansion) {
     newSegments += amountOfExpansion
 }
 
-export function onSnake(positionOfFood) {
+export function onSnake(positionOfFood, {ignoreHead = false} = {}) {
     // The some() method tests whether at least one element in the array passes the test implemented by the provided function.
-    return snakeBody.some(segment => {
+    return snakeBody.some((segment, index) => {
+        if (ignoreHead && index === 0) return false
         return equalPosition(segment, positionOfFood)
     })
 }
+
+export function getSnakehead() {
+    return snakeBody[0]
+}
+
+export function snakeIntersection() {
+    return onSnake(snakeBody[0], {ignoreHead: true})
+    // ignore is because onSnake makes it loop over the head, so head is same with head => return const true
+}
+
 // pos1 is any segment of the snake but it is obviously only the head and pos2 is the food
 function equalPosition(pos1, pos2) {
     return pos1.x === pos2.x && pos1.y === pos2.y
