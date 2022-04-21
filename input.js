@@ -33,39 +33,46 @@ let moving = false
 
 // the .touches registers the touches
 function handleStart(evt) {
+    evt.preventDefault();
     startingX = evt.touches[0].clientX
     startingY = evt.touches[0].clientY
 }
 
 function handleMove(evt) {
+    evt.preventDefault();
     moving = true;
     endingX = evt.touches[0].clientX
     endingY = evt.touches[0].clientY
 }
 
 // if ending is higher than start => there is a move
-function handleEnd() {
+function handleEnd(evt) {
+    evt.preventDefault();
     if (!moving) return
     // x axis move
     if (Math.abs(endingX - startingX) > Math.abs(endingY - startingY)) {
         if (endingX > startingX) {
             if (lastInputDirection.x !== 0)
                 return
-            inputDirection = { x: 1, y: 0}
+            else
+                inputDirection = { x: 1, y: 0}
         } else if (endingX < startingX)
             if (lastInputDirection.x !== 0)
                 return
-            inputDirection = { x: -1, y: 0}
+            else
+                inputDirection = { x: -1, y: 0}
     // y axis move
     } else {
         if (endingY > startingY) {
             if (lastInputDirection.y !== 0)
                 return
-            inputDirection = { x: 0, y: 1}
+            else
+                inputDirection = { x: 0, y: 1}
         } else if (endingY < startingY)
             if (lastInputDirection.y !== 0)
-            return
-            inputDirection = { x: 0, y: -1}
+                return
+            else
+                inputDirection = { x: 0, y: -1}
     }
     moving = false
 }
